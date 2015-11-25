@@ -7,7 +7,7 @@ from app.helpers import utils
 from app.helpers import email_templates
 
 from cStringIO import StringIO
-from datetime import date
+from datetime import datetime
 
 resume_dir = 'public/resumes/'
 
@@ -47,7 +47,7 @@ def is_email_available(email):
 
 def save_resume(resume, first_name, last_name):
     ext = resume.filename.split('.')[-1]
-    fname = '%s.%s.%s.resume.%s' % (first_name, last_name, date.today(), ext)
+    fname = '%s.%s.%s.resume.%s' % (first_name, last_name, datetime.utcnow().isoformat(), ext)
     fname = fname.replace(' ', '-')
     open(resume_dir + fname, 'wb').write(resume.value)
     return fname
