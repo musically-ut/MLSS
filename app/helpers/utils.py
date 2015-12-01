@@ -2,6 +2,7 @@
 
 import web
 import config
+import random
 
 import md5, time, types
 
@@ -16,7 +17,7 @@ def capitalize_first(str):
     return ' '.join(map(string.capitalize, str.lower().split()))
 
 def make_unique_md5():
-    return md5.md5(time.ctime() + config.encryption_key).hexdigest()
+    return md5.md5(time.ctime() + str(random.random()) + config.encryption_key).hexdigest()
 
 def get_all_functions(module):
     functions = {}
